@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 
-class Vector
+class Vector4
 {
 public:
 	float m_x;
@@ -9,60 +9,162 @@ public:
 	float m_z;
 	float m_w;
 
-	Vector()
-	{
-		m_x = 0;
-		m_y = 0;
-		m_z = 0;
-		m_w = 0;
-	}
-	Vector(float xin, float yin);
-	Vector(float xin, float yin, float zin);
-	Vector(float xin, float yin, float zin, float win);
+	Vector4();
+	Vector4(float x, float y, float z, float w);
+	float DotProduct(Vector4 other);
+	Vector4 CrossProduct(Vector4 other);
+	float Magnitude();
+	void Normalise();
+	void Print();
 
-	Vector operator + (Vector & other)
+	Vector4 operator + (Vector4 & other)
 	{
-		return Vector(m_x + other.m_x, m_y + other.m_y, m_z + other.m_z);
+		return Vector4(m_x + other.m_x, m_y + other.m_y, m_z + other.m_z, m_w + other.m_w);
 	}
 
-	Vector operator - (Vector & other)
+	Vector4 operator - (Vector4 & other)
 	{
-		return Vector(m_x - other.m_x, m_y - other.m_y, m_z - other.m_z);
+		return Vector4(m_x - other.m_x, m_y - other.m_y, m_z - other.m_z, m_w - other.m_w);
 	}
 
-	Vector operator * (Vector & other)
+	Vector4 operator * (Vector4 & other)
 	{
-		return Vector(m_x * other.m_x, m_y * other.m_y, m_z * other.m_z);
+		return Vector4(m_x * other.m_x, m_y * other.m_y, m_z * other.m_z, m_w * other.m_w);
 	}
 
-	Vector operator * (float m)
+	Vector4 operator * (float m)
 	{
-		return Vector(m_x * m, m_y * m, m_z * m);
+		return Vector4(m_x * m, m_y * m, m_z * m, m_w * m);
 	}
 
-	Vector operator / (float d)
+	Vector4 operator / (float d)
 	{
-		return Vector(m_x / d, m_y / d, m_z / d);
+		return Vector4(m_x / d, m_y / d, m_z / d, m_w / d);
 	}
 };
 
-class Matrix
+class Vector3
+{
+public:
+	float m_x;
+	float m_y;
+	float m_z;
+
+	Vector3();
+	Vector3(float x, float y, float z);
+	float DotProduct(Vector3 other);
+	Vector3 CrossProduct(Vector3 other);
+	float Magnitude();
+	void Normalise();
+	void Print();
+
+	Vector3 operator + (Vector3 & other)
+	{
+		return Vector3(m_x + other.m_x, m_y + other.m_y, m_z + other.m_z);
+	}
+
+	Vector3 operator - (Vector3 & other)
+	{
+		return Vector3(m_x - other.m_x, m_y - other.m_y, m_z - other.m_z);
+	}
+
+	Vector3 operator * (Vector3 & other)
+	{
+		return Vector3(m_x * other.m_x, m_y * other.m_y, m_z * other.m_z);
+	}
+
+	Vector3 operator * (float m)
+	{
+		return Vector3(m_x * m, m_y * m, m_z * m);
+	}
+
+	Vector3 operator / (float d)
+	{
+		return Vector3(m_x / d, m_y / d, m_z / d);
+	}
+};
+
+class Vector2
+{
+public:
+	float m_x;
+	float m_y;
+
+	Vector2();
+	Vector2(float x, float y);
+	float DotProduct(Vector2 other);
+	float Magnitude();
+	void Normalise();
+	void Print();
+
+	Vector2 operator + (Vector2 & other)
+	{
+		return Vector2(m_x + other.m_x, m_y + other.m_y);
+	}
+
+	Vector2 operator - (Vector2 & other)
+	{
+		return Vector2(m_x - other.m_x, m_y - other.m_y);
+	}
+
+	Vector2 operator * (Vector2 & other)
+	{
+		return Vector2(m_x * other.m_x, m_y * other.m_y);
+	}
+
+	Vector2 operator * (float m)
+	{
+		return Vector2(m_x * m, m_y * m);
+	}
+
+	Vector2 operator / (float d)
+	{
+		return Vector2(m_x / d, m_y / d);
+	}
+};
+
+class Matrix2
 {
 private:
-	Vector m_a;
-	Vector m_b;
-	Vector m_c;
-	Vector m_d;
+	Vector2 m_a;
+	Vector2 m_b;
 public:
-	Matrix() {}
-	Matrix(Vector a, Vector b);
-	Matrix(Vector a, Vector b, Vector c);
-	Matrix(Vector a, Vector b, Vector c, Vector d);
+	Matrix2() {}
+	Matrix2(Vector2 a, Vector2 b);
+	Matrix2(float a, float b, float c, float d);
 
-	Matrix operator * (Matrix other)
+	void Print()
+	{
+		std::cout << m_a.m_x << ", " << m_a.m_y << std::endl;
+		std::cout << m_b.m_x << ", " << m_b.m_y << std::endl;
+		system("pause");
+	}
+
+	Matrix2 operator * (Matrix2 other)
 	{	
-		Vector newA = { m_a.m_x * other.m_a.m_x + m_a.m_y * other.m_b.m_x, m_a.m_x * other.m_b.m_y + m_a.m_y * other.m_b.m_y };
-		Vector newB = { m_b.m_x * other.m_a.m_x + m_b.m_y * other.m_b.m_x, m_b.m_x * other.m_a.m_y + m_b.m_y * other.m_b.m_y };
-		Matrix newMatrix = { newA, newB };
+		return Matrix2(m_a.m_x * other.m_a.m_x + m_a.m_y * other.m_b.m_x, m_a.m_x * other.m_b.m_y + m_a.m_y * other.m_b.m_y, m_b.m_x * other.m_a.m_x + m_b.m_y * other.m_b.m_x, m_b.m_x * other.m_a.m_y + m_b.m_y * other.m_b.m_y);
+	}
+};
+
+class Matrix3
+{
+private:
+	Vector3 m_a;
+	Vector3 m_b;
+	Vector3 m_c;
+public:
+	Matrix3() {}
+	Matrix3(Vector3 a, Vector3 b, Vector3 c);
+	Matrix3(float a, float b, float c, float d, float e, float f, float g, float h, float i);
+
+	void Print()
+	{
+		std::cout << m_a.m_x << " " << m_a.m_y << " " << m_a.m_z << std::endl;
+		std::cout << m_b.m_x << " " << m_b.m_y << " " << m_b.m_z << std::endl;
+		std::cout << m_c.m_x << " " << m_c.m_y << " " << m_c.m_z << std::endl;
+	}
+
+	Matrix3 operator * (Matrix3 other)
+	{
 	}
 };
