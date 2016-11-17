@@ -12,17 +12,17 @@ Vector2::Vector2(float x, float y)
 	m_y = y;
 }
 
-float Vector2::DotProduct(Vector2 other)
+float Vector2::dot(Vector2 other)
 {
 	return m_x * other.m_x + m_y * other.m_y;
 }
 
-float Vector2::Magnitude()
+float Vector2::magnitude()
 {
 	return sqrt((m_x*m_x) + (m_y*m_y));
 }
 
-void Vector2::Normalise()
+void Vector2::normalise()
 {
 	if (m_x > m_y) //Checks which axis has the highest value
 	{
@@ -36,7 +36,7 @@ void Vector2::Normalise()
 	}
 }
 
-void Vector2::Print()
+void Vector2::print()
 {
 	std::cout << m_x << ", " << m_y << std::endl;
 }
@@ -80,22 +80,22 @@ Vector3::Vector3(float x, float y, float z)
 	m_z = z;
 }
 
-float Vector3::DotProduct(Vector3 other)
+float Vector3::dot(Vector3 other)
 {
 	return m_x * other.m_x + m_y * other.m_y + m_z * other.m_z;
 }
 
-Vector3 Vector3::CrossProduct(Vector3 other)
+Vector3 Vector3::cross(Vector3 other)
 {
 	return Vector3(m_y * other.m_z - m_z * other.m_y, m_x * other.m_z - m_z * other.m_x, m_x * other.m_y - m_y * other.m_x);
 }
 
-float Vector3::Magnitude()
+float Vector3::magnitude()
 {
 	return sqrt(m_x*m_x + m_y*m_y + m_z*m_z);
 }
 
-void Vector3::Normalise()
+void Vector3::normalise()
 {
 	if (m_x >= m_y && m_x >= m_z)
 	{
@@ -117,7 +117,7 @@ void Vector3::Normalise()
 	}
 }
 
-void Vector3::Print()
+void Vector3::print()
 {
 	std::cout << m_x << ", " << m_y << ", " << m_z << std::endl;
 }
@@ -163,22 +163,22 @@ Vector4::Vector4(float x, float y, float z, float w)
 	m_w = w;
 }
 
-float Vector4::DotProduct(Vector4 other)
+float Vector4::dot(Vector4 other)
 {
 	return m_x*other.m_x + m_y*other.m_y + m_z*other.m_z + m_w*other.m_w;
 }
 
-Vector4 Vector4::CrossProduct(Vector4 other)
+Vector4 Vector4::cross(Vector4 other)
 {
 	return Vector4();
 }
 
-float Vector4::Magnitude()
+float Vector4::magnitude()
 {
 	return sqrt(m_x*m_x + m_y*m_y + m_z*m_z + m_w*m_w);
 }
 
-void Vector4::Normalise()
+void Vector4::normalise()
 {
 	if (m_x >= m_y && m_x >= m_z && m_x >= m_w)
 	{
@@ -210,7 +210,7 @@ void Vector4::Normalise()
 	}
 }
 
-void Vector4::Print()
+void Vector4::print()
 {
 	std::cout << m_x << ", " << m_y << ", " << m_z << ", " << m_w << std::endl;
 }
@@ -273,6 +273,13 @@ Matrix3::Matrix3(Vector3 a, Vector3 b, Vector3 c)
 	m_c = c;
 }
 
+Matrix3::Matrix3(float a, float b, float c, float d, float e, float f, float g, float h, float i)
+{
+	m_a = { a, b, c };
+	m_b = { d, e, f };
+	m_c = { g, h, i };
+}
+
 void Matrix3::Print()
 {
 	std::cout << m_a.m_x << " " << m_a.m_y << " " << m_a.m_z << std::endl;
@@ -300,6 +307,14 @@ Matrix4::Matrix4(Vector4 a, Vector4 b, Vector4 c, Vector4 d)
 	m_b = b;
 	m_c = c;
 	m_d = d;
+}
+
+Matrix4::Matrix4(float a, float b, float c, float d, float e, float f, float g, float h, float i, float j, float k, float l, float m, float n, float o, float p)
+{
+	m_a = { a, b, c, d };
+	m_b = { e, f, g, h };
+	m_c = { i, j, k, l };
+	m_d = { m, n, o, p };
 }
 
 Matrix4 Matrix4::operator*(Matrix4 o)

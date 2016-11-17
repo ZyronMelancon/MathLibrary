@@ -6,40 +6,40 @@ void main()
 	std::cout << "2D vector multiplied by a scalar (2): " << std::endl;
 	Vector2 test1 = { 3, 4 };
 	std::cout << "Original: ";
-	test1.Print();
+	test1.print();
 	std::cout << "Multiplied: ";
 	test1 = test1 * 2;
-	test1.Print();
+	test1.print();
 	printf("\n");
 
 	std::cout << "Normalising a 2D vector: " << std::endl;
 	Vector2 test2 = { 5, 6 };
 	std::cout << "Original: ";
-	test2.Print();
-	test2.Normalise();
+	test2.print();
+	test2.normalise();
 	std::cout << "Normalised: ";
-	test2.Print();
+	test2.print();
 	printf("\n");
 
 	std::cout << "Cross Product function: " << std::endl;
 	Vector3 a = { 3, 5, 1 };
 	Vector3 b = { 6, 2, 5 };
 	std::cout << "The two 3D vectors are:" << std::endl;
-	a.Print();
-	b.Print();
+	a.print();
+	b.print();
 	std::cout << "Here is the Cross Product: ";
-	Vector3 test3 = a.CrossProduct(b);
-	test3.Print();
+	Vector3 test3 = a.cross(b);
+	test3.print();
 	printf("\n");
 
 	std::cout << "Dot Product function: " << std::endl;
 	Vector4 c = { 4, 6, 8, 24 };
 	Vector4 d = { 35, 3, 5, 2 };
 	std::cout << "The two 4D vectors are: " << std::endl;
-	c.Print();
-	d.Print();
+	c.print();
+	d.print();
 	std::cout << "The Dot Product is: ";
-	std::cout << c.DotProduct(d) << std::endl;
+	std::cout << c.dot(d) << std::endl;
 	printf("\n");
 
 	std::cout << "This next test checks for functionality with the multiply operator overide for Matrices." << std::endl;
