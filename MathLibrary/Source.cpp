@@ -56,6 +56,19 @@ void main()
 
 	test6.Print();  
 
+	printf("\n");
+
+	Matrix3 test7 = { 1, 0, 0, 0, 1, 0, 0, 0, 1 };
+	std::cout << "This test checks functionality of the setRotateZ function." << std::endl;
+	std::cout << "The original matrix is: " << std::endl;
+	test7.Print();
+	std::cout << "The rotated matrix is: " << std::endl;
+	test7.setRotateZ(0.785398);
+	/* I expect a result of
+	0.707 -0.707 0
+	0.707  0.707 0
+	0	   0	 1 */
+	test7.Print();
 
 	system("pause");
 }
