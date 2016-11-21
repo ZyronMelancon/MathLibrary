@@ -301,6 +301,30 @@ Matrix3 Matrix3::operator*(Matrix3 o)
 	return Matrix3(newA, newB, newC);
 }
 
+void Matrix3::setRotatex(float r)
+{
+	m_b.m_y = cos(r);
+	m_b.m_z = -sin(r);
+	m_c.m_y = sin(r);
+	m_c.m_z = cos(r);
+}
+
+void Matrix3::setRotateY(float r)
+{
+	m_a.m_x = cos(r);
+	m_a.m_z = sin(r);
+	m_c.m_x = -sin(r);
+	m_c.m_z = cos(r);
+}
+
+void Matrix3::setRotateZ(float r)
+{
+	m_a.m_x = cos(r);
+	m_a.m_y = -sin(r);
+	m_b.m_x = sin(r);
+	m_b.m_y = cos(r);
+}
+
 Matrix4::Matrix4(Vector4 a, Vector4 b, Vector4 c, Vector4 d)
 {
 	m_a = a;
@@ -336,4 +360,28 @@ Matrix4 Matrix4::operator*(Matrix4 o)
 		m_d.m_x * o.m_a.m_z + m_d.m_y * o.m_b.m_z + m_d.m_z * o.m_c.m_z + m_d.m_w * o.m_d.m_z,
 		m_d.m_x * o.m_a.m_w + m_d.m_y * o.m_b.m_w + m_d.m_z * o.m_c.m_w + m_d.m_w * o.m_d.m_w };
 	return Matrix4(newA, newB, newC, newD);
+}
+
+void Matrix4::setRotateX(float r)
+{
+	m_b.m_y = cos(r);
+	m_b.m_z = -sin(r);
+	m_c.m_y = sin(r);
+	m_c.m_z = cos(r);
+}
+
+void Matrix4::setRotateY(float r)
+{
+	m_a.m_x = cos(r);
+	m_a.m_z = sin(r);
+	m_c.m_x = -sin(r);
+	m_c.m_z = cos(r);
+}
+
+void Matrix4::setRotateZ(float r)
+{
+	m_a.m_x = cos(r);
+	m_a.m_y = -sin(r);
+	m_b.m_x = sin(r);
+	m_b.m_y = cos(r);
 }

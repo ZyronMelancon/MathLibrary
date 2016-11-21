@@ -89,6 +89,9 @@ public:
 	float e, float f, float g, float h, float i);//Takes in 9 individual floats
 	void Print();								//Prints to console in a 3 x 3 grid format
 	Matrix3 operator * (Matrix3 o);				//Operator overload for multiplication of similar matrices
+	void setRotatex(float r);
+	void setRotateY(float r);
+	void setRotateZ(float r);
 };
 
 class Matrix4									//4 x 4 transform Matrix
@@ -106,4 +109,7 @@ public:
 		float i, float j, float k, float l,
 		float m, float n, float o, float p);
 	Matrix4 operator * (Matrix4 o);				//Operator overload for multiplication of similar matrices
+	void setRotateX(float r);
+	void setRotateY(float r);
+	void setRotateZ(float r);
 };
